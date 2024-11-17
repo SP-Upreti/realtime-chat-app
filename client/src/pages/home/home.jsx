@@ -1,9 +1,14 @@
 import React from 'react'
+import Sidebar from "../../components/sidebar/sidebar"
+import Chatbox from '../../components/chatbox/chatbox'
 
-export default function home() {
+export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <main>
+      <div className="App flex ">
+        <Sidebar />
+        <Chatbox />
+      </div>
+    </main>
   )
 }

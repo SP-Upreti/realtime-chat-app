@@ -14,7 +14,7 @@ export default function UserList() {
                                     </div>
                                 </div>
                                 <div className="">
-                                    <h2 className='text-xl font-semibold text-black '>Surendra Upreti</h2>
+                                    <h2 className='text-lg font-semibold text-black '>Surendra Upreti</h2>
                                     <p><span>tap to chat</span></p>
                                 </div>
                             </div>

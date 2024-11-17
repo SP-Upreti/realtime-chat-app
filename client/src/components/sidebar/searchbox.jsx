@@ -3,7 +3,7 @@ import React from 'react'
 export default function Searchbox() {
 
     return (
-        <div className='border-b p-4 pb-10'>
+        <div className='py-2 px-5 pb-5'>
             <form onSubmit={(e) => { e.preventDefault(); alert("user not found") }}>
                 <label class="input input-bordered flex items-center gap-2 bg-white text-black">
                     <input type="text" class="grow" placeholder="Search" required />

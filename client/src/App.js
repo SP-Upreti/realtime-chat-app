@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './pages/login/login';
 import Home from './pages/home/home';
 import Signup from './pages/signup/signup';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -10,6 +12,7 @@ function App() {
 
   return (
     <div className="bg-white">
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<Login />} />

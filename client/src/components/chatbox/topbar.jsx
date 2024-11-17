@@ -6,7 +6,7 @@ export default function Topbar() {
         <div className='px-10 py-2 shadow'>
             <div className="navbar  bg-white ">
                 <div className="flex-1">
-                    <a className="text-slate-500 font-semibold  text-xl">Surendra Upreti</a>
+                    <span className="text-slate-500 font-semibold  text-xl">Surendra Upreti</span>
                 </div>
                 <div className="flex-none">
                     {/* <div className="dropdown dropdown-end">
@@ -34,13 +34,13 @@ export default function Topbar() {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>
-                                <a className="justify-between">
+                                <span className="justify-between">
                                     Profile
                                     <span className="badge">New</span>
-                                </a>
+                                </span>
                             </li>
-                            <li><a>Settings</a></li>
-                            <Link to={'/login'}> <li><a>Logout</a></li></Link>
+                            <li><span>Settings</span></li>
+                            <Link to={'/login'}> <li>Logout</li></Link>
                         </ul>
                     </div>
                 </div>

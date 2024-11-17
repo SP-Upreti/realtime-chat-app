@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 
 export default function Login() {
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+
+    const handleChange = (e) => {
+        e.preventDefault();
+
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData)
+    }
     return (
         <div className='h-dvh w-screen flex justify-center items-center'>
             <div
@@ -16,12 +36,14 @@ export default function Login() {
                 <p class="text-center text-black">
                     Sign in to your account
                 </p>
-                <form method="POST" action="/" class="space-y-6">
+                <form method="POST" onSubmit={handleSubmit} class="space-y-6">
                     <div class="relative">
                         <input
                             placeholder="john@example.com"
                             class="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                             required
+                            value={formData.email}
+                            onChange={handleChange}
                             id="email"
                             name="email"
                             type="email"
@@ -38,6 +60,8 @@ export default function Login() {
                             required
                             id="password"
                             name="password"
+                            value={formData.password}
+                            onChange={handleChange}
                             type="password"
 
                         />

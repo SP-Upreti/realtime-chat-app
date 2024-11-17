@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useSignUp from '../../hooks/signup.js';
 
 export default function Signup() {
+  // name, email, gender, phone, password, confirmPassword
+  const { loading, Register } = useSignUp()
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    phone: "",
+    password: "",
+    confirmPassword: ""
+  })
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData)
+    await Register(formData);
+  }
+
   return (
     <div className="h-dvh w-screen flex justify-center items-center">
       <div className="max-w-xl w-full rounded-xl shadow-2xl overflow-hidden p-8 space-y-8">
         <h2 className="text-center text-4xl font-extrabold text-black">Hello! There</h2>
         <p className="text-center text-black">Sign in to your account</p>
-        <form method="POST" className="space-y-6">
+        <form method="POST" onSubmit={handleSubmit} className="space-y-6">
           <div className="md:flex justify-center items-center gap-4">
             <div className="space-y-6 md:w-1/2">
               <div className="relative">
@@ -15,8 +44,10 @@ export default function Signup() {
                   placeholder="Enter your full name"
                   className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                   required
+                  value={formData.fullname}
+                  onChange={handleChange}
                   id="fullName"
-                  name="fullName"
+                  name="name"
                   type="text"
                 />
                 <label
@@ -31,6 +62,8 @@ export default function Signup() {
                   placeholder="Enter your phone number"
                   className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                   required
+                  value={formData.phone}
+                  onChange={handleChange}
                   id="phone"
                   name="phone"
                   type="tel"
@@ -49,6 +82,8 @@ export default function Signup() {
                   placeholder="Enter your email"
                   className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
                   id="email"
                   name="email"
                   type="email"
@@ -61,9 +96,11 @@ export default function Signup() {
                 </label>
               </div>
               <div className="relative">
-                <select name="" id=""
+                <select name="gender" id=""
                   className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                   required
+                  value={formData.gender}
+                  onChange={handleChange}
                 >
                   <option value="" selected disabled >--Select Gender--</option>
                   <option value="male"  >Male</option>
@@ -80,6 +117,8 @@ export default function Signup() {
                 placeholder="Enter your password"
                 className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                 required
+                value={formData.password}
+                onChange={handleChange}
                 id="password"
                 name="password"
                 type="password"
@@ -96,6 +135,8 @@ export default function Signup() {
                 placeholder="Confirm your password"
                 className="peer h-10 w-full border-b-2 border-gray-300 text-black bg-transparent placeholder-transparent focus:outline-none focus:border-purple-500"
                 required
+                value={formData.confirmpassword}
+                onChange={handleChange}
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -112,7 +153,9 @@ export default function Signup() {
             className="w-full py-2 px-4 bg-purple-500 text-white hover:bg-purple-700 rounded-md shadow-lg font-semibold transition duration-200"
             type="submit"
           >
-            Sign In
+            {
+              loading ? (<span className="loading loading-dots loading-lg"></span>) : (<span >Sign Up</span>)
+            }
           </button>
         </form>
         <div className="text-center text-black">

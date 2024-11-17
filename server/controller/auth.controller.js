@@ -13,7 +13,7 @@ const Register = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (user) {
-            return res.status(400).json({ error: "User already exists with this email" });
+            return res.status(200).json({ success: false, message: "User with this email already exists" });
         }
 
         const boyPic = `https://avatar.iran.liara.run/public/boy?username=${name}`;

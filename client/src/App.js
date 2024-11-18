@@ -1,26 +1,24 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from './pages/login/login';
-import Home from './pages/home/home';
-import Signup from './pages/signup/signup';
+import { Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/home/home";
+import Login from "./pages/login/login";
+import SignUp from "./pages/signup/signup";
+// import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "./context/authContext";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-
-
 
 function App() {
-
+  const { authUser } = useAuthContext();
   return (
-    <div className="bg-white">
+    <div className='p-4 h bg-white'>
+      <Routes>
+        <Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
+        <Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />
+        <Route path='/signup' element={authUser ? <Navigate to='/' /> : <SignUp />} />
+      </Routes>
       <ToastContainer />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/' element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </div >
+    </div>
   );
 }
 

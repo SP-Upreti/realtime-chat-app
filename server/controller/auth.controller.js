@@ -32,7 +32,7 @@ const Register = async (req, res) => {
                 profilePic: gender == "male" ? boyPic : girlPic
             }
         )
-        generateTokenSetCookie(newUser._id, res)
+        generateTokenSetCookie(newUser._id, res);
         await newUser.save();
         res.status(200).json({ success: true, message: "User Registered Sucessfully" });
     }

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
+import useLogin from '../../hooks/login';
 
 export default function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-
+    const { loading, login } = useLogin()
     const handleChange = (e) => {
         e.preventDefault();
 
@@ -18,9 +19,10 @@ export default function Login() {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData)
+        console.log(formData);
+        await login(formData.email, formData.password)
     }
     return (
         <div className='h-dvh w-screen flex justify-center items-center'>

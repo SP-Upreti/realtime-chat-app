@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-app.use(cors());
+
+app.use(cors({
+    origin: 'http://localhost:3000', // Change this to your frontend URL
+    credentials: true, // Allow cookies to be sent
+}));
+
+
 app.use(express.json());
 
 const dotenv = require('dotenv');

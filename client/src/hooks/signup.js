@@ -17,7 +17,8 @@ export default function useSignUp() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ name, email, gender, phone, password, confirmPassword })
+                body: JSON.stringify({ name, email, gender, phone, password, confirmPassword }),
+                credentials: 'include'
             });
             const data = await res.json();
             // console.log("success", data);

@@ -8,9 +8,10 @@ const generateTokenSetCookie = (userid, res) => {
     res.cookie("Token", Token, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: 'strict',
-        seccure: process.env.node_env !== "development"
+        sameSite: 'lax', // Allow cross-origin cookies in development
+        secure: process.env.node_env === "production" // Only set 'secure' in production
     })
 }
+
 
 module.exports = generateTokenSetCookie;

@@ -45,7 +45,6 @@ const getMessage = async (req, res) => {
 
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
-    console.log("receiver id = ", receiverId, senderId);
     try {
 
         const convo = await Conversation.find({

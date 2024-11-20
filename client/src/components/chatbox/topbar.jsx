@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authContext'
 import uselogout from '../../hooks/useLogout';
 
 export default function Topbar() {
-    const { authUser, setAuthUser } = useContext(AuthContext);
+    const { authUser, setAuthUser, selectedUser } = useContext(AuthContext);
     const { Logout } = uselogout();
 
     const handleClick = async () => {
@@ -14,7 +14,7 @@ export default function Topbar() {
         <div className='px-10 py-2 shadow'>
             <div className="navbar  bg-white ">
                 <div className="flex-1">
-                    <span className="text-slate-500 font-semibold  text-xl">Surendra Upreti</span>
+                    <span className="text-slate-500 font-semibold  text-xl">{selectedUser.name}</span>
                 </div>
                 <div className="flex-none">
                     {/* <div className="dropdown dropdown-end">
@@ -35,21 +35,20 @@ export default function Topbar() {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    src={selectedUser.profilePic} />
                             </div>
                         </div>
-                        <ul
+                        {/* <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>
-                                <span className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </span>
+                                <span className="justify-between"> Profile<span className="badge">New</span></span>
                             </li>
-                            <li><span>Settings</span></li>
-                            <Link to={'/login'}> <li onClick={handleClick}>Logout</li></Link>
-                        </ul>
+                            <li>
+                                <span>Settings</span>
+                            </li>
+                            <li onClick={handleClick}><Link to={'/login'} >Logout</Link></li>
+                        </ul> */}
                     </div>
                 </div>
             </div>

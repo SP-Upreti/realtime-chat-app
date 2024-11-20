@@ -12,7 +12,7 @@ function App() {
   const { authUser } = useContext(AuthContext);
   console.log("authuser=", authUser)
   return (
-    <div className='p-4 h bg-white'>
+    <div className=' h bg-white relative'>
       <Routes>
         <Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
         <Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />

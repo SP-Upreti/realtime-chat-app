@@ -21,7 +21,7 @@ export default function useSignUp() {
                 credentials: 'include'
             });
             const data = await res.json();
-            // console.log("success", data);
+            localStorage.setItem("chat-user", JSON.stringify(data));
             data.success ? toast.success(data.message) : toast.error(data.message);
         }
         catch (err) {

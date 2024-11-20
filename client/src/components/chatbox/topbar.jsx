@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/authContext'
+import uselogout from '../../hooks/useLogout';
 
 export default function Topbar() {
+    const { authUser, setAuthUser } = useContext(AuthContext);
+    const { Logout } = uselogout();
+
+    const handleClick = async () => {
+        await Logout();
+    }
     return (
         <div className='px-10 py-2 shadow'>
             <div className="navbar  bg-white ">
@@ -40,7 +48,7 @@ export default function Topbar() {
                                 </span>
                             </li>
                             <li><span>Settings</span></li>
-                            <Link to={'/login'}> <li>Logout</li></Link>
+                            <Link to={'/login'}> <li onClick={handleClick}>Logout</li></Link>
                         </ul>
                     </div>
                 </div>

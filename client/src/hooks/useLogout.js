@@ -1,20 +1,18 @@
 import { useContext, useState } from "react";
-// import toast from "react-hot-toast";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/authContext";
-const useLogin = () => {
+import { useNavigate } from "react-router-dom";
+const useLogout = () => {
     const [loading, setLoading] = useState(false);
     const { setAuthUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const login = async (email, password) => {
-        const success = handleInputErrors(email, password);
-        if (!success) return;
+    const Logout = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:8080/auth/login", {
+            const res = await fetch("http://localhost:8080/auth/logout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
                 credentials: 'include'
             });
 
@@ -22,9 +20,10 @@ const useLogin = () => {
             if (data.error) {
                 throw new Error(data.error);
             }
-
-            localStorage.setItem("chat-user", JSON.stringify(data));
-            setAuthUser(data);
+            setAuthUser(null);
+            localStorage.removeItem('chat-user')
+            toast.success("Logout Success");
+            navigate("/login")
         } catch (error) {
             toast.error(error.message);
         } finally {
@@ -32,15 +31,7 @@ const useLogin = () => {
         }
     };
 
-    return { loading, login };
+    return { loading, Logout };
 };
-export default useLogin;
+export default useLogout;
 
-function handleInputErrors(email, password) {
-    if (!email || !password) {
-        toast.error(email + password);
-        return false;
-    }
-
-    return true;
-}

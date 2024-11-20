@@ -1,126 +1,45 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react';
+import useGetMessage from '../../hooks/useGetMessage';
+import { AuthContext } from '../../context/authContext';
 
 export default function Messages() {
-    
+    const { GetMessage, message } = useGetMessage();
+    const { selectedUser, newMessage } = useContext(AuthContext);
+    const { authUser } = useContext(AuthContext);
+
+
+    useEffect(() => {
+        GetMessage();
+        console.log(message);
+    }, [selectedUser, newMessage]);
+
+    const sender_ID = authUser._user._id;
+
     return (
         <div className='p-4 overflow-auto h-[75dvh]'>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            {message.map((data, key) => (
+                <div key={key} className="mb-4">
+                    <div className="ml-4">
+                        {data.messageId.map((msg, idx) => (
+                            <div className={`chat ${msg.senderId === sender_ID ? "chat-end" : "chat-start"}`}>
+                                <div className="chat-image avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            alt="Tailwind CSS chat bubble component"
+                                            src={msg.senderId === sender_ID ? authUser._user.profilePic : selectedUser.profilePic} />
+                                    </div>
+                                </div>
+                                <div className="chat-header flex flex-col gap-1">
+
+                                    <time className="text-xs opacity-50">{new Date(msg.createdAt).toLocaleString()}</time>
+                                    <span>{msg.senderId === sender_ID ? authUser._user.name : selectedUser.name}</span>
+                                </div>
+                                <div className="chat-bubble"> {msg.message}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className="chat-header text-slate-500">
-                    Obi-Wan Kenobi
-                    <time className="text-xs  text-slate-500 ps-4">12:45</time>
-                </div>
-                <div className="chat-bubble bg-blue-600 text-white">You were the Chosen One!</div>
-                <div className="chat-footer ">Delivered</div>
-            </div>
-            <div className="chat chat-start">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Anakin
-                    <time className="text-xs  ps-2 text-slate-500">12:46</time>
-                </div>
-                <div className="chat-bubble bg-white border text-black">I hate you!</div>
-            </div>
-            <div className="chat chat-start">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Anakin
-                    <time className="text-xs  ps-2 text-slate-500">12:46</time>
-                </div>
-                <div className="chat-bubble bg-white border text-black">I hate you!</div>
-            </div>
-            <div className="chat chat-start">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Anakin
-                    <time className="text-xs  ps-2 text-slate-500">12:46</time>
-                </div>
-                <div className="chat-bubble bg-white border text-black">I hate you!</div>
-            </div>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Obi-Wan Kenobi
-                    <time className="text-xs  text-slate-500 ps-4">12:45</time>
-                </div>
-                <div className="chat-bubble bg-blue-600 text-white">You were the Chosen One!</div>
-                <div className="chat-footer ">Delivered</div>
-            </div>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Obi-Wan Kenobi
-                    <time className="text-xs  text-slate-500 ps-4">12:45</time>
-                </div>
-                <div className="chat-bubble bg-blue-600 text-white">You were the Chosen One!</div>
-                <div className="chat-footer ">Delivered</div>
-            </div>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Obi-Wan Kenobi
-                    <time className="text-xs  text-slate-500 ps-4">12:45</time>
-                </div>
-                <div className="chat-bubble bg-blue-600 text-white">You were the Chosen One!</div>
-                <div className="chat-footer ">Delivered</div>
-            </div>
-            <div className="chat chat-end">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header text-slate-500">
-                    Obi-Wan Kenobi
-                    <time className="text-xs  text-slate-500 ps-4">12:45</time>
-                </div>
-                <div className="chat-bubble bg-blue-600 text-white">You were the Chosen One!</div>
-                <div className="chat-footer ">Delivered</div>
-            </div>
+            ))}
         </div>
-    )
+    );
 }

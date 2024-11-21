@@ -19,19 +19,30 @@ const messageRoute = require('./route/message.js')
 const userRoute = require('./route/user.js')
 const databaseConnect = require('./database/connection');
 
+const path = require('path')
+
 dotenv.config();
 app.use(cookieParser())
 
 const Port = process.env.PORT || 8000;
 
-app.get('/', (req, res) => {
-    res.json({ message: 'API Live' });
-});
+// const __dirname = path.resolve();
+
+
+
+
 
 app.use('/auth', authRoutes);
 app.use('/message', messageRoute);
 app.use('/user', userRoute);
 
+app.use(express.static(path.join(__dirname, "../client/build")))
+
+app.get(
+    "/", (req, res) => {
+        res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+    }
+)
 
 server.listen(Port, () => {
     databaseConnect();

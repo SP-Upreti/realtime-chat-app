@@ -9,7 +9,7 @@ const useGetMessage = () => {
     const GetMessage = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:8080/message/get/${selectedUser._id}`, {
+            const res = await fetch(`https://realtime-chatapp-tttr.onrender.com/message/get/${selectedUser._id}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include'

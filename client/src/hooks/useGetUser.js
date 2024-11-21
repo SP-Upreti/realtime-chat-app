@@ -9,7 +9,7 @@ const useGetUser = () => {
 
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:8080/user", {
+            const res = await fetch("https://realtime-chatapp-tttr.onrender.com/user", {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include',

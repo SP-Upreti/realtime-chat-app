@@ -10,7 +10,7 @@ const useLogout = () => {
     const Logout = async () => {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost:8080/auth/logout", {
+            const res = await fetch("https://realtime-chatapp-tttr.onrender.com/auth/logout", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include'

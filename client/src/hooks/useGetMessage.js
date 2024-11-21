@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/authContext";
+import useConversation from "../zustand/useConversation";
 const useGetMessage = () => {
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState([])
-    const { selectedUser } = useContext(AuthContext);
+    const { selectedUser, messages, setMessages } = useContext(AuthContext);
 
     const GetMessage = async () => {
         setLoading(true);
@@ -19,8 +19,7 @@ const useGetMessage = () => {
             if (data.error) {
                 throw new Error(data.error);
             }
-            setMessage(data);
-            console.log(message)
+            setMessages(data)
         } catch (error) {
             toast.error(error.message);
         } finally {
@@ -28,7 +27,7 @@ const useGetMessage = () => {
         }
     };
 
-    return { loading, GetMessage, message };
+    return { loading, GetMessage, messages, setMessages };
 };
 export default useGetMessage;
 

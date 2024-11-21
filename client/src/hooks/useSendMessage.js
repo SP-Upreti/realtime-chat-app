@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/authContext";
+import useConversation from "../zustand/useConversation";
 const useSendMessage = () => {
     const [loading, setLoading] = useState(false);
-    const [sentMessage, setSentMessage] = useState(null)
-    const { selectedUser } = useContext(AuthContext);
+    // const [sentMessage, setSentMessage] = useState(null)
+    const { selectedUser, messages, setMessages } = useContext(AuthContext);
 
     const SendMessage = async (message) => {
         setLoading(true);
@@ -21,9 +22,9 @@ const useSendMessage = () => {
             if (data.error) {
                 throw new Error(data.error);
             }
+            console.log(data)
+            // setMessages([...messages, message]);
             toast.success("Message sent")
-            setSentMessage(data);
-            console.log(message)
         } catch (error) {
             toast.error(error.message);
         } finally {
@@ -31,7 +32,7 @@ const useSendMessage = () => {
         }
     };
 
-    return { loading, SendMessage, sentMessage };
+    return { loading, SendMessage, messages, setMessages };
 };
 export default useSendMessage;
 

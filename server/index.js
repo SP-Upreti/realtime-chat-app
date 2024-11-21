@@ -1,5 +1,6 @@
 const express = require('express');
-const app = express();
+// const app = express();
+const { app, server } = require('./socket/socket.js')
 const cors = require('cors');
 
 app.use(cors({
@@ -32,7 +33,7 @@ app.use('/message', messageRoute);
 app.use('/user', userRoute);
 
 
-app.listen(Port, () => {
+server.listen(Port, () => {
     databaseConnect();
     console.log(`Server is running on port http://localhost:${Port}`);
 });

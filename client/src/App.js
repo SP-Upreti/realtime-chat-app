@@ -10,7 +10,6 @@ import { useContext } from "react";
 
 function App() {
   const { authUser } = useContext(AuthContext);
-  console.log("authuser=", authUser)
   return (
     <div className=' h bg-white relative'>
       <Routes>

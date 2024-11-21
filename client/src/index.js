@@ -7,11 +7,18 @@ import { BrowserRouter } from 'react-router-dom';
 // import { AuthContextProvider } from './context/AuthContext';
 // import { AuthContext } from './context/authContext';
 import { AuthContextProvider } from './context/authContext';
+import { SocketContextProvider } from './context/socketContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter><AuthContextProvider><App /></AuthContextProvider></BrowserRouter>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <SocketContextProvider>
+          <App />
+        </SocketContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

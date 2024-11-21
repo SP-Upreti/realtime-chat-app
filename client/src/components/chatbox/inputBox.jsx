@@ -10,6 +10,7 @@ export default function InputBox() {
     const { SendMessage } = useSendMessage()
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (input == "") return;
         setNewData(input);
         setInput("");
         await SendMessage(newData)

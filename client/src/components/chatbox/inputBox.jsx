@@ -4,13 +4,16 @@ import { AuthContext } from '../../context/authContext';
 
 export default function InputBox() {
     const [input, setInput] = useState("");
+    const [newData, setNewData] = useState();
     const { setNewMessage } = useContext(AuthContext);
 
     const { SendMessage } = useSendMessage()
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await SendMessage(input)
+        setNewData(input);
         setInput("");
+        await SendMessage(newData)
+
     }
     return (
         <div className='absolute bottom-0 p-8 w-full bg-white'>

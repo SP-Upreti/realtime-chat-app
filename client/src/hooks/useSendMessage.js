@@ -24,9 +24,10 @@ const useSendMessage = () => {
             }
             console.log(data)
             // setMessages([...messages, message]);
-            toast.success("Message sent")
+            // toast.success("Message sent")
         } catch (error) {
             toast.error(error.message);
+            console.log(error.message)
         } finally {
             setLoading(false);
         }

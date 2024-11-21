@@ -21,7 +21,8 @@ const useGetMessage = () => {
             }
             setMessages(data)
         } catch (error) {
-            toast.error(error.message);
+            // toast.error(error.message);
+            console.log(error.messages)
         } finally {
             setLoading(false);
         }

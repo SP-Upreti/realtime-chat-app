@@ -19,12 +19,10 @@ export default function Messages() {
     // Fetch messages when selected user or new message changes
     useEffect(() => {
         GetMessage();
-        console.log(messages)
     }, [selectedUser, messages]);
 
     const sender_ID = authUser._user._id;
 
-    console.log("Messages to map", messages)
 
     return (
         <div className="p-4 overflow-auto h-[75dvh]">

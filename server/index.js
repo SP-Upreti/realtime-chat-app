@@ -4,7 +4,7 @@ const { app, server } = require('./socket/socket.js')
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Change this to your frontend URL
+    origin: 'https://realtime-chatapp-tttr.onrender.com/', // Change this to your frontend URL
     credentials: true, // Allow cookies to be sent
 }));
 

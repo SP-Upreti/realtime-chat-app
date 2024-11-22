@@ -14,7 +14,6 @@ app.use(express.json());
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
 const authRoutes = require('./route/auth');
-// const messageRoute = require('./route/message');
 const messageRoute = require('./route/message.js')
 const userRoute = require('./route/user.js')
 const databaseConnect = require('./database/connection');

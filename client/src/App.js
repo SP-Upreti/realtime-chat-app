@@ -11,7 +11,7 @@ import { useContext } from "react";
 function App() {
   const { authUser } = useContext(AuthContext);
   return (
-    <div className=' h bg-white relative'>
+    <div className=' h bg-white relative overflow-hidden'>
       <Routes>
         <Route path='/' element={authUser ? <Home /> : <Navigate to={"/login"} />} />
         <Route path='/login' element={authUser ? <Navigate to='/' /> : <Login />} />

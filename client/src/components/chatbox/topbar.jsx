@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/authContext'
 import uselogout from '../../hooks/useLogout';
 
 export default function Topbar() {
-    const { authUser, setAuthUser, selectedUser } = useContext(AuthContext);
+    const { authUser, setAuthUser, selectedUser, openSidebar, setOpenSidebar } = useContext(AuthContext);
     const { Logout } = uselogout();
 
     const handleClick = async () => {
@@ -14,6 +14,10 @@ export default function Topbar() {
         <div className='px-10 py-2 shadow'>
             <div className="navbar  bg-white ">
                 <div className="flex-1">
+                    <span className='px-4 md:hidden' onClick={() => { setOpenSidebar(!openSidebar) }}><svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    </span>
                     <span className="text-slate-500 font-semibold  text-xl">{selectedUser.name}</span>
                 </div>
                 <div className="flex-none">

@@ -11,9 +11,7 @@ export default function Messages() {
 
     // Scroll to the bottom whenever messages update
     useEffect(() => {
-        setTimeout(() => {
-            messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+        messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
     // Fetch messages when selected user or new message changes

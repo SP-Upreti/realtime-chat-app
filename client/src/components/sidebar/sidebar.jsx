@@ -10,7 +10,7 @@ export default function Sidebar() {
         GetUser()
     }, [userData])
     return (
-        <div className='h-dvh flex flex-col gap-2 justify-between   py-4 border-r-2'>
+        <div className='h-dvh  flex-col gap-2 justify-between   py-4 border-r-2 hidden md:flex'>
 
             <div className="">
                 <Searchbox />

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/authContext';
 import { SocketContext } from '../../context/socketContext';
 
 export default function UserList({ users }) {
-    const { setSelectedUser, selectedUser } = useContext(AuthContext);
+    const { setSelectedUser, selectedUser, openSidebar, setOpenSidebar } = useContext(AuthContext);
     const { onlineUsers } = useContext(SocketContext);
 
     const [selected, setSelected] = useState(8457987);
@@ -15,7 +15,7 @@ export default function UserList({ users }) {
                 users.map(
                     (data, key) => {
                         return (
-                            <div key={key} className={`flex items-center hover:bg-blue-500 hover:text-white gap-8 rounded-md cursor-pointer userList p-4 ${selected === key ? "bg-blue-500 text-white" : ""} `} title='tap to chat' onClick={() => { setSelectedUser(data); setSelected(key); }}>
+                            <div key={key} className={`flex items-center hover:bg-blue-500 hover:text-white gap-8 rounded-md cursor-pointer userList p-4 ${selected === key ? "bg-blue-500 text-white" : ""} `} title='tap to chat' onClick={() => { setSelectedUser(data); setSelected(key); setOpenSidebar(true) }}>
                                 <div className="avatar" key={key}>
                                     <div className="ring-primary ring-offset-base-100 h-12 w-12 rounded-full ring ring-offset-2">
                                         <img src={data.profilePic} alt='user avatar' />

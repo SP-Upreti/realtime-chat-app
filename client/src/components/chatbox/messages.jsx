@@ -10,9 +10,9 @@ export default function Messages() {
     const messageEndRef = useRef(null);
 
     // Scroll to the bottom whenever messages update
-    useEffect(() => {
-        messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+    // useEffect(() => {
+    //     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // }, [messages]);
 
     // Fetch messages when selected user or new message changes
     useEffect(() => {

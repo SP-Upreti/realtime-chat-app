@@ -8,7 +8,7 @@ function Chatbox() {
     const { selectedUser } = useContext(AuthContext)
 
     return (
-        <div className='w-full relative'>
+        <div className='w-full relative h-dvh'>
             {
                 selectedUser ? (
                     <div className="">

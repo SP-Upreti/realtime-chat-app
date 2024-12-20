@@ -15,9 +15,9 @@ export default function InputBox() {
 
     }
     return (
-        <div className='absolute bottom-0 p-8 w-full bg-white'>
+        <div className='absolute bottom-0 p-2 sm:p-8 w-full bg-white'>
             <form method='post' onSubmit={handleSubmit}>
-                <label className=" border-2 border-slate-300 rounded-md p-3 px-5 flex items-center gap-2">
+                <label className=" border-2 border-slate-300 rounded-md p-3  flex items-center gap-2">
                     <input type="text" value={input} onChange={(e) => { setInput(e.target.value); setNewMessage(input); }} className="grow bg-white text-black outline-none" placeholder="Your message.." autoFocus />
                     <button title='click to send message' className='sendBtn' disabled={loading}>
                         {loading ? (<span className="loading loading-spinner loading-xs"></span>) :

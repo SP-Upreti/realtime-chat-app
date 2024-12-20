@@ -6,7 +6,7 @@ export const AuthContextProvider = ({ children }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [openSidebar, setOpenSidebar] = useState(false);
+    const [openSidebar, setOpenSidebar] = useState(true);
 
     return <AuthContext.Provider value={{ authUser, setAuthUser, selectedUser, setSelectedUser, newMessage, setNewMessage, messages, setMessages, openSidebar, setOpenSidebar }}>{children}</AuthContext.Provider>;
 };

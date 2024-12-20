@@ -4,7 +4,7 @@ const { app, server } = require('./socket/socket.js')
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'https://realtime-chatapp-tttr.onrender.com/', // Change this to your frontend URL
+    origin: 'http://localhost:5173', // Change this to your frontend URL
     credentials: true, // Allow cookies to be sent
 }));
 
@@ -35,11 +35,11 @@ app.use('/auth', authRoutes);
 app.use('/message', messageRoute);
 app.use('/user', userRoute);
 
-app.use(express.static(path.join(__dirname, "../client/build")))
+// app.use(express.static(path.join(__dirname, "../client/build")))
 
 app.get(
     "/", (req, res) => {
-        res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+        res.json({ message: "api live" })
     }
 )
 

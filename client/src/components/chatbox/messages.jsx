@@ -4,33 +4,34 @@ import { AuthContext } from '../../context/authContext';
 
 export default function Messages() {
     const { GetMessage } = useGetMessage();
-    const { selectedUser, newMessage, messages } = useContext(AuthContext);
+    const { selectedUser, messages } = useContext(AuthContext);
     const { authUser } = useContext(AuthContext);
 
     const messageEndRef = useRef(null);
 
-    // Scroll to the bottom whenever messages update
     useEffect(() => {
         const btn = document.querySelector('.sendBtn');
         btn.addEventListener('click', () => {
-            messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+                messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 1000);
         })
     }, [messages]);
 
-    // Fetch messages when selected user or new message changes
+
     useEffect(() => {
         GetMessage();
     }, [selectedUser, messages]);
 
     const sender_ID = authUser._user._id;
 
-
     return (
-        <div className="p-4 overflow-auto h-[75dvh]">
-            {messages?.map((data, key) => (
+        <div className="p-1 sm:p-4 overflow-auto h-[70vh] sm:h-[75dvh]">
+            {/* Apply slice to the messages array here */}
+            {messages.map((data, key) => (
                 <div key={key} className="mb-4">
-                    <div className="ml-4">
-                        {data.messageId.map((msg, idx) => (
+                    <div className="">
+                        {data.messageId?.map((msg, idx) => (
                             <div
                                 key={idx}
                                 className={`chat ${msg.senderId === sender_ID ? "chat-end" : "chat-start"}`}
@@ -67,4 +68,6 @@ export default function Messages() {
             <div ref={messageEndRef} />
         </div>
     );
+
+
 }

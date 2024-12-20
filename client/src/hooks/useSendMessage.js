@@ -11,7 +11,7 @@ const useSendMessage = () => {
         setLoading(true);
         console.log("Receiver =", selectedUser._id)
         try {
-            const res = await fetch(`https://realtime-chatapp-tttr.onrender.com/message/send/${selectedUser._id}`, {
+            const res = await fetch(`http://localhost:8080/message/send/${selectedUser._id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "message": message }),

@@ -4,7 +4,7 @@ const { app, server } = require('./socket/socket.js')
 const cors = require('cors');
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Change this to your frontend URL
+    origin: ['http://localhost:5173', 'https://chattter-gilt.vercel.app/'],
     credentials: true, // Allow cookies to be sent
 }));
 
